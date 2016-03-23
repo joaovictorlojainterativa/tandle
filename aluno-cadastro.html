@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Base</title>
+
+    <!-- CSS Files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body ng-app="tandleapp">
+<div id="wrapper">
+
+    <!-- Sidebar Start -->
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg"/>
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
+
+                                Hospital Portugues
+
+                            </strong>
+                             </span>
+                                <span class="text-xs block">
+                                    André Moraes
+                                    <b class="caret"></b>
+                                </span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="#">Configurações</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        TL
+                    </div>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Cadastro de Alunos</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="aluno-lista.html"><i class="fa fa-list"></i> Listar</a></li>
+                        <li class="active"><a href="aluno-cadastro.html"><i class="fa fa-plus"></i> Incluir</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-building"></i> <span class="nav-label">Cadastro Institucional</span>
+                        <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="instituicao-cadastro.html"><i class="fa fa-file"></i> Ficha Cadastral</a></li>
+                        <li><a href="contato-lista.html"><i class="fa fa-users"></i> Contatos</a></li>
+                        <li><a href="#"><i class="fa fa-list-alt"></i> Andamentos</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <!-- Sidebar End -->
+
+    <!-- Parceiros Start-->
+    <div class="wrap-parceiros text-center">
+        <h5>Parceiros</h5>
+        <img src="http://placehold.it/400x300" alt="SUS" class="img-responsive">
+    </div>
+    <!-- Parceiros End -->
+
+    <div id="page-wrapper" class="gray-bg">
+        <!-- Start Top bar -->
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-left">
+                    <li class="logo"><img src="img/logo.png" width="160" height="26" alt="" class="img-responsive"/>
+                    </li>
+                    <li class="titulo">
+                        <h3>PROGRAMA NACONAL DE FORMAÇÃO EM RADIOTERAPIA</h3>
+                    </li>
+                    <!--li>
+                        <a href="#">
+                            <i class="fa fa-sign-out"></i> Sair
+                        </a>
+                    </li-->
+                </ul>
+
+            </nav>
+        </div>
+
+        <!-- End Top bar -->
+
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-12">
+                <h1>Cadastro de Alunos</h1>
+            </div>
+            <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Página Pai</a></li>
+                    <li class="active">Página Atual</li>
+                </ol>
+            </div>
+
+        </div>
+
+
+        <div class="wrapper-content" ng-controller="cadastroctrl">
+            <div ng-hide="exibirform">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Documentos do candidato</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>Confira nesta página a lista de documentos que devem ser anexados para inscrição de
+                                    candidatos nos processos seletivos dos cursos.</p>
+
+                                <p>Antes de iniciar a inscrição, reúna todos os documentos solicitados em PDF. Observe
+                                    os
+                                    modelos que estão disponíveis, quando for o caso. Ao clicar no botão verde SEGUIR,
+                                    preencha o formulário com os dados do candidato, salve-o e continue na página
+                                    seguinte,
+                                    anexando os documentos em PDF. O sistema permite anexá-los de uma só vez. Em
+                                    seguida,
+                                    clique em ENVIAR. Verifique se o responsável pela inscrição recebeu e-mail de
+                                    confirmação. As comunicações sobre eventuais correções serão feitas por e-mail pela
+                                    equipe do programa, caso algum documento esteja incorreto.</p>
+
+                                <p>Por favor Selecione o curso desejado:</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <select name="cursos" ng-model="cursos.cr" id="cursos">
+                                    <option value="">Selecione o curso</option>
+                                    <option value="cr1">Curso de Qualificação Profissional para Técnicos em Radioterapia
+                                    </option>
+                                    <option value="cr2">Mestrado Profissional em Física Médica</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div ng-show="cursos.cr == 'cr1'">
+                                    <p><strong>Curso 1</strong></p>
+                                    <table class="table table-striped table-hover">
+                                        <tr>
+                                            <td>a) ficha de inscrição preenchida, de acordo com as instruções
+                                                específicas,
+                                                disponíveis na página eletrônica do Projeto (preencha o formulário da
+                                                próxima página).
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>a) ficha de inscrição preenchida, de acordo com as instruções
+                                                específicas,
+                                                disponíveis na página eletrônica do Projeto (preencha o formulário da
+                                                próxima página).
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>a) ficha de inscrição preenchida, de acordo com as instruções
+                                                específicas,
+                                                disponíveis na página eletrônica do Projeto (preencha o formulário da
+                                                próxima página).
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div ng-show="cursos.cr == 'cr2'">
+                                    <p><strong>Curso 2</strong></p>
+                                    <table class="table table-striped table-hover">
+                                        <tr>
+                                            <td>a) ficha de inscrição preenchida, de acordo com as instruções
+                                                específicas,
+                                                disponíveis na página eletrônica do Projeto (preencha o formulário da
+                                                próxima página).
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>a) ficha de inscrição preenchida, de acordo com as instruções
+                                                específicas,
+                                                disponíveis na página eletrônica do Projeto (preencha o formulário da
+                                                próxima página).
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>a) ficha de inscrição preenchida, de acordo com as instruções
+                                                específicas,
+                                                disponíveis na página eletrônica do Projeto (preencha o formulário da
+                                                próxima página).
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button ng-show="cursos.cr != ''" class="btn btn-primary pull-right" ng-click="exibirform = true"
+                        type="button">Seguir <span
+                        class="fa fa-arrow-right"></span>
+                </button>
+                <div class="clearfix"></div>
+            </div>
+            <form ng-show="exibirform" ng-submit="submit(form)" name="form" novalidate class="form-horizontal">
+                <p class="alert alert-danger">
+                    Os dados com * são obrigatórios a serem preenchidos!
+                </p>
+                <!-- Exemplo de box Simples Start -->
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Informações Pessoais</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Nome do
+                                    Aluno*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.nomeAluno" type="text" name="nomeAluno"
+                                               required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.nomeAluno.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.nomeAluno.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o nome do aluno</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">CPF do
+                                    Aluno*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.cpf" type="text" name="cpf" required
+                                               cpf="data.cpf"
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.cpf.$touched">
+                                            <span class="label label-danger" ng-show="form.cpf.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o cpf</span>
+                                            <span class="label label-danger" ng-show="form.cpf.$error.cpf"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> O cpf informado não é válido</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Nome do
+                                    Pai*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.nomePai" type="text" name="nomePai"
+                                               required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.nomePai.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.nomePai.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o nome do pai</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Nome da
+                                    Mãe*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.nomeMae" type="text" name="nomeMae"
+                                               required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.nomeMae.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.nomeMae.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o nome da mãe</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Data de
+                                    Nascimento*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.dataNasc" type="text" name="dataNasc"
+                                               required
+                                               mask="99/99/9999"
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.dataNasc.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.dataNasc.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha a data de nascimento</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Gênero*:</label>
+
+                                    <div class="col-sm-9">
+                                        <select name="genero" ng-model="data.genero" required="" class="form-control">
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                        </select>
+
+                                        <div ng-show="form.$submitted || form.genero.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.genero.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Escolha uma das opções</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Estado
+                                    Civil*:</label>
+
+                                    <div class="col-sm-9">
+                                        <select name="estadoCivil" ng-model="data.estadoCivil" required
+                                                class="form-control">
+                                            <option value="Solteiro">Solteiro</option>
+                                            <option value="Casado">Casado</option>
+                                            <option value="Separado">Separado</option>
+                                            <option value="Viúvo">Viúvo</option>
+                                        </select>
+
+                                        <div ng-show="form.$submitted || form.estadoCivil.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.estadoCivil.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Escolha uma das opções</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">R.G.*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.rg" type="text" name="rg" required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.rg.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.rg.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o RG</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Orgão
+                                    Emissor*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.orgEmissor" type="text"
+                                               name="orgEmissor" required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.orgEmissor.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.orgEmissor.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o orão emissor</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Data de
+                                    Expedição*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.dataExp" type="text" name="dataExp"
+                                               required
+                                               mask="99/99/9999"
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.dataExp.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.dataExp.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha a data de expedição</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Portador de
+                                    necessidades especiais?*:</label>
+
+                                    <div class="col-sm-9">
+                                        <label for="" class="radio-inline">
+                                            <input ng-model="data.necessidadesespeciais" type="radio" required
+                                                   name="necessidadesespeciais"
+                                                   value="Não">
+                                            Não
+                                        </label>
+                                        <label for="" class="radio-inline">
+                                            <input ng-model="data.necessidadesespeciais" type="radio" required
+                                                   name="necessidadesespeciais"
+                                                   value="Sim">
+                                            Sim
+                                        </label>
+
+                                        <div ng-show="form.$submitted || form.necessidadesespeciais.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.necessidadesespeciais.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Selecione uma das opções</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for=""
+                                                               class="col-sm-3 control-label">Nacionalidade*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.nacionalidade" type="text" name="nacionalidade" required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.nacionalidade.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.nacionalidade.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha a nacionalidade</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Residência (onde mora)</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">CEP*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.cep" type="text" name="cep" required
+                                               mask="99999-999"
+                                               class="form-control"
+                                               ng-class="{isLoading:isLoadingCep}">
+
+                                        <div ng-show="form.$submitted || form.cep.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.cep.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o CEP</span>
+                                            <span class="label label-danger"
+                                                  ng-show="!$scope.cepvalido"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> CEP Inválido</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Bairro*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.bairro" type="text" name="bairro"
+                                               required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.bairro.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.bairro.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o Bairro</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Endereço*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.endereco" type="text" name="endereco"
+                                               required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.endereco.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.endereco.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o endereço</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for=""
+                                                               class="col-sm-3 control-label">Complemento:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.complemento" type="text"
+                                               name="complemento"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Estado*:</label>
+
+                                    <div class="col-sm-9">
+                                        <select class="form-control" required name="estado" ng-model="data.estado"
+                                                ng-options="id as estado for (id, estado) in estadosList">
+                                            <option value="" selected>Selecione o estado</option>
+                                        </select>
+
+                                        <div ng-show="form.$submitted || form.estado.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.estado.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Escolha um estado</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Município*:</label>
+
+                                    <div class="col-sm-9">
+                                        <select class="form-control" required name="municipio"
+                                                ng-model="data.municipio"
+                                                ng-options="municipio.id as municipio.nome for municipio in municipioList">
+                                            <option value="" ng-bind="listMunicipioStatus" selected></option>
+                                        </select>
+
+                                        <div ng-show="form.$submitted || form.municipio.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.municipio.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Escolha um municipio</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Informações de Contato e Login</h5>
+
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">E-mail*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.email" type="email" name="email"
+                                               required
+                                               notransfer
+                                               emailcadastro
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.email.$touched">
+                                            <span class="label label-danger" ng-show="form.email.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o email do contato</span>
+                                            <span class="label label-danger" ng-show="form.email.$error.emailcadastro"> <span class="glyphicon glyphicon-warning-sign"></span> Esse e-mail já foi cadastrado</span>
+                                            <span class="label label-danger"
+                                                      ng-show="form.email.$error.email && !form.email.$error.required"> <span
+                                                        class="glyphicon glyphicon-warning-sign"></span> Informe um email válido</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Confirme o
+                                    e-mail*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.emailconfirmacao" type="text"
+                                               name="emailconfirmacao"
+                                               notransfer
+                                               required
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.emailconfirmacao.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.emailconfirmacao.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o e-mail</span>
+                                            <span class="label label-danger"
+                                                  ng-show="data.emailconfirmacao != data.email"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Os e-mails não são iguais</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Telefone*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.tel" type="text" name="tel" required
+                                               masktel
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.tel.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.tel.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o telefone</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><label for="" class="col-sm-3 control-label">Celular*:</label>
+
+                                    <div class="col-sm-9">
+                                        <input ng-model="data.cel" type="text" name="cel" required
+                                               masktel
+                                               class="form-control">
+
+                                        <div ng-show="form.$submitted || form.cel.$touched">
+                                            <span class="label label-danger"
+                                                  ng-show="form.cel.$error.required"> <span
+                                                    class="glyphicon glyphicon-warning-sign"></span> Preencha o celular</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Exemplo de box Simples End -->
+                <button class="btn btn-primary pull-left" ng-click="exibirform = false" type="button"><span
+                        class="fa fa-arrow-left"></span>
+                    Voltar
+                </button>
+                <button class="btn btn-primary pull-right" type="submit"><span class="fa fa-send"></span> Enviar
+                </button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+
+        <div class="footer">
+
+        </div>
+    </div>
+</div>
+<!-- Mainly scripts -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="js/inspinia.js"></script>
+<script src="js/plugins/pace/pace.min.js"></script>
+<script src="js/plugins/angular/angular.min.js"></script>
+<script src="js/plugins/angular/angular-animate.min.js"></script>
+<script src="js/plugins/angular/angular-sanitize.min.js"></script>
+<script src="js/jquery.mask.js"></script>
+<script src="js/jsSite.js"></script>
+
+</body>
+</html>
