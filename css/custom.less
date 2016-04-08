@@ -91,3 +91,39 @@
 #cursos {
   margin-bottom: 15px;
 }
+
+.modulos {
+  .panel {
+    border: none;
+  }
+  .list-group {
+
+  }
+  .list-group-item:first-child {
+    border-top: none;
+  }
+  .sublinks {
+    padding: 0 20px;
+  }
+  .list-group-item {
+    border-radius: 0;
+    border-right: none;
+    border-left: none;
+    .fa-angle-right {
+      display: none;
+    }
+    .fa-angle-down {
+      display: inline-block;
+    }
+    &.collapsed {
+      .fa-angle-right {
+        display: inline-block;
+      }
+      .fa-angle-down {
+        display: none;
+      }
+    }
+  }
+}
+
+

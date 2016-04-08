@@ -10,7 +10,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
 </head>
 <body ng-app="tandleapp">
 <div id="wrapper">
@@ -62,7 +62,13 @@
                         <li><a href="#"><i class="fa fa-list-alt"></i> Andamentos</a></li>
                     </ul>
                 </li>
-                <li><a href="contato-lista.html"><i class="fa fa-folder-open"></i> Documentos</a></li>
+                <li>
+                    <a href="#"><i class="fa fa-folder-open"></i> <span class="nav-label">Documentos</span>
+                        <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="instituicao-cadastro.html"><i class="fa fa-file"></i> Manual</a></li>
+                    </ul>
+                </li>
             </ul>
 
         </div>
@@ -137,7 +143,9 @@
                                 <div class="form-group"><label for="" class="col-sm-3 control-label">Nome da
                                     Instituição*:</label>
 
-                                    <div class="col-sm-9"><input ng-model="data.nome" name="nome" required type="text"
+                                    <div class="col-sm-9"><input ng-model="data.nome" name="nome"
+                                                                 ng-init="data.nome = 'Hospital Estadual'" required
+                                                                 type="text"
                                                                  class="form-control">
 
                                         <div ng-show="form.$submitted || form.nome.$touched">
@@ -155,6 +163,7 @@
                                     <div class="col-sm-9">
                                         <input cnpj="data.cnpj" ng-model="data.cnpj" name="cnpj"
                                                required type="text"
+                                               ng-init="data.cnpj = '70.971.325/0001-05'"
                                                class="form-control">
 
                                         <div ng-show="form.$submitted || form.cnpj.$touched">
@@ -174,6 +183,7 @@
 
                                     <div class="col-sm-9"><input ng-model="data.cep" mask="99999-999" name="cep"
                                                                  required type="text"
+                                                                 ng-init="data.cep = '21900-000'"
                                                                  class="form-control">
 
                                         <div ng-show="form.$submitted || form.cep.$touched">
@@ -188,6 +198,7 @@
                                 <div class="form-group"><label for="" class="col-sm-3 control-label">Bairro*:</label>
 
                                     <div class="col-sm-9"><input ng-model="data.bairro" name="bairro" required
+                                                                 ng-init="data.bairro = 'Centro'"
                                                                  type="text" class="form-control">
 
                                         <div ng-show="form.$submitted || form.bairro.$touched">
@@ -204,6 +215,7 @@
                                 <div class="form-group"><label for="" class="col-sm-3 control-label">Endereço*:</label>
 
                                     <div class="col-sm-9"><input ng-model="data.endereco" name="endereco" required
+                                                                 ng-init="data.endereco = 'Rua Domingos, 32'"
                                                                  type="text" class="form-control">
 
                                         <div ng-show="form.$submitted || form.endereco.$touched">
@@ -219,6 +231,7 @@
                                                                class="col-sm-3 control-label">Complemento:</label>
 
                                     <div class="col-sm-9"><input ng-model="data.complemento" name="complemento" required
+                                                                 ng-init="data.complemento = 'sala 33'"
                                                                  type="text" class="form-control">
                                     </div>
                                 </div>
@@ -230,6 +243,7 @@
 
                                     <div class="col-sm-9">
                                         <select class="form-control" name="estado" required ng-model="data.estado"
+                                                ng-init="data.estado = '6'"
                                                 ng-options="id as estado for (id, estado) in estadosList">
                                             <option value="" selected>Selecione o estado</option>
                                         </select>
@@ -247,6 +261,7 @@
 
                                     <div class="col-sm-9">
                                         <select class="form-control" name="municipio" required ng-model="data.municipio"
+                                                ng-init="data.municipio = 703"
                                                 ng-options="municipio.id as municipio.nome for municipio in municipioList">
                                             <option value="" ng-bind="listMunicipioStatus" selected></option>
                                         </select>
@@ -268,6 +283,7 @@
                                     <div class="col-sm-9">
                                         <select class="form-control" name="instituicao" required
                                                 ng-model="data.instituicao"
+                                                ng-init="data.instituicao = 'a'"
                                                 id="">
                                             <option value="">Instituições</option>
                                             <option value="a">A</option>
@@ -287,7 +303,8 @@
                                     unidade*:</label>
 
                                     <div class="col-sm-9">
-                                        <select class="form-control" name="unidade" required ng-model="data.unidade">
+                                        <select class="form-control" name="unidade" ng-init="data.unidade = '2'"
+                                                required ng-model="data.unidade">
                                             <option value="">Tipos</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
