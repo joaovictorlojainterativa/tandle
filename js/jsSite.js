@@ -235,6 +235,21 @@ tandleapp.directive("cpf", [function () {
     }
 }]);
 
+tandleapp.directive("senha", [function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attrs, ctrl) {
+            ctrl.$validators.senha = function (model, view) {
+                if (ctrl.$isEmpty(model) || (model.length >= 6 && model.search(/[0-9][a-zA-Z]/))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    }
+}]);
+
 tandleapp.controller("cadastroctrl", ["$scope", "$http", "ws_cep", '$timeout', function ($scope, $http, ws_cep, $timeout) {
     $scope.cursos = {
         cr: ''
@@ -266,68 +281,72 @@ tandleapp.controller("cadastroctrl", ["$scope", "$http", "ws_cep", '$timeout', f
         tel: '',
         cel: ''
     };
-    $scope.cepvalido = false;
     $scope.estadosList = {
         1: "Acre",
         2: "Alagoas",
-        3: "Amapá",
-        4: "Amazonas",
+        3: "Amazonas",
+        4: "Amapá",
         5: "Bahia",
         6: "Ceará",
         7: "Distrito Federal",
         8: "Espírito Santo",
         9: "Goiás",
         10: "Maranhão",
-        11: "Mato Grosso",
+        11: "Minas Gerais",
         12: "Mato Grosso do Sul",
-        13: "Minas Gerais",
+        13: "Mato Grosso",
         14: "Pará",
         15: "Paraíba",
-        16: "Paraná",
-        17: "Pernambuco",
-        18: "Piauí",
+        16: "Pernambuco",
+        17: "Piauí",
+        18: "Paraná",
         19: "Rio de Janeiro",
-        21: "Rio Grande do Norte",
-        22: "Rio Grande do Sul",
-        23: "Rondônia",
-        24: "Roraima",
-        25: "Santa Catarina",
+        20: "Rio Grande do Norte",
+        21: "Rondônia",
+        22: "Roraima",
+        23: "Rio Grande do Sul",
+        24: "Santa Catarina",
+        25: "Sergipe",
         26: "São Paulo",
-        27: "Sergipe",
-        28: "Tocantins"
+        27: "Tocantins"
     };
     $scope.estadosListID = {
         "AC": "1",
         "AL": "2",
-        "AP": "3",
-        "AM": "4",
+        "AM": "3",
+        "AP": "4",
         "BA": "5",
         "CE": "6",
         "DF": "7",
         "ES": "8",
         "GO": "9",
         "MA": "10",
-        "MS": "11",
-        "MT": "12",
-        "MG": "13",
+        "MG": "11",
+        "MS": "12",
+        "MT": "13",
         "PA": "14",
         "PB": "15",
-        "PR": "16",
-        "PE": "17",
-        "PI": "18",
+        "PE": "16",
+        "PI": "17",
+        "PR": "18",
         "RJ": "19",
-        "RN": "21",
-        "RS": "22",
-        "RO": "23",
-        "RR": "24",
-        "SC": "25",
+        "RN": "20",
+        "RO": "21",
+        "RR": "22",
+        "RS": "23",
+        "SC": "24",
+        "SE": "25",
         "SP": "26",
-        "SE": "27",
-        "TO": "28",
+        "TO": "27"
     };
     $scope.listMunicipioStatus = "Selecione o município";
     $scope.municipioList = [];
     $scope.isLoadingCep = false;
+
+    jQuery('.scroll-top').click(function () {
+        jQuery("html, body").animate({scrollTop: 0}, "slow");
+        return false;
+    });
 
     $scope.$watch("data.cep", function (newValue, oldValue, scope) {
         if (newValue == undefined)
@@ -350,7 +369,6 @@ tandleapp.controller("cadastroctrl", ["$scope", "$http", "ws_cep", '$timeout', f
         request.success(function (response) {
             if (response.erro) {
                 $scope.isLoadingCep = false;
-                $scope.cepvalido = false;
                 return;
             }
 
@@ -363,7 +381,6 @@ tandleapp.controller("cadastroctrl", ["$scope", "$http", "ws_cep", '$timeout', f
                 //$scope.data.estado = response.uf.toUpperCase();
                 $scope.data.estado = $scope.estadosListID[response.uf.toUpperCase()];
                 $scope.loadMunicipiosByEstado($scope.data.estado);
-                $scope.cepvalido = true;
             } catch (e) {
                 console.log(e);
             }
@@ -410,7 +427,7 @@ tandleapp.controller("cadastroctrl", ["$scope", "$http", "ws_cep", '$timeout', f
         if (typeof form == "undefined")
             return;
         console.log(form.$valid, $scope.data);
-        if (form.$valid && $scope.data.email == $scope.data.emailconfirmacao && $scope.cepvalido) {
+        if (form.$valid && $scope.data.email == $scope.data.emailconfirmacao) {
             console.log("valido");
             $scope.$applyAsync();
         }
@@ -457,60 +474,60 @@ tandleapp.controller("insituicaoCtrl", ['$scope', '$http', 'ws_cep', function ($
     $scope.estadosList = {
         1: "Acre",
         2: "Alagoas",
-        3: "Amapá",
-        4: "Amazonas",
+        3: "Amazonas",
+        4: "Amapá",
         5: "Bahia",
         6: "Ceará",
         7: "Distrito Federal",
         8: "Espírito Santo",
         9: "Goiás",
         10: "Maranhão",
-        11: "Mato Grosso",
+        11: "Minas Gerais",
         12: "Mato Grosso do Sul",
-        13: "Minas Gerais",
+        13: "Mato Grosso",
         14: "Pará",
         15: "Paraíba",
-        16: "Paraná",
-        17: "Pernambuco",
-        18: "Piauí",
+        16: "Pernambuco",
+        17: "Piauí",
+        18: "Paraná",
         19: "Rio de Janeiro",
-        21: "Rio Grande do Norte",
-        22: "Rio Grande do Sul",
-        23: "Rondônia",
-        24: "Roraima",
-        25: "Santa Catarina",
+        20: "Rio Grande do Norte",
+        21: "Rondônia",
+        22: "Roraima",
+        23: "Rio Grande do Sul",
+        24: "Santa Catarina",
+        25: "Sergipe",
         26: "São Paulo",
-        27: "Sergipe",
-        28: "Tocantins"
+        27: "Tocantins"
     };
     $scope.estadosListID = {
         "AC": "1",
         "AL": "2",
-        "AP": "3",
-        "AM": "4",
+        "AM": "3",
+        "AP": "4",
         "BA": "5",
         "CE": "6",
         "DF": "7",
         "ES": "8",
         "GO": "9",
         "MA": "10",
-        "MS": "11",
-        "MT": "12",
-        "MG": "13",
+        "MG": "11",
+        "MS": "12",
+        "MT": "13",
         "PA": "14",
         "PB": "15",
-        "PR": "16",
-        "PE": "17",
-        "PI": "18",
+        "PE": "16",
+        "PI": "17",
+        "PR": "18",
         "RJ": "19",
-        "RN": "21",
-        "RS": "22",
-        "RO": "23",
-        "RR": "24",
-        "SC": "25",
+        "RN": "20",
+        "RO": "21",
+        "RR": "22",
+        "RS": "23",
+        "SC": "24",
+        "SE": "25",
         "SP": "26",
-        "SE": "27",
-        "TO": "28",
+        "TO": "27"
     };
     $scope.listMunicipioStatus = "Selecione o município";
     $scope.municipioList = [];
@@ -594,6 +611,26 @@ tandleapp.controller("insituicaoCtrl", ['$scope', '$http', 'ws_cep', function ($
         console.log(form.$valid, $scope.data);
 
         if (form.$valid) {
+            console.log("valido");
+            $scope.$applyAsync();
+        }
+    };
+}]);
+
+tandleapp.controller("alterarsenhaCtrl", ["$scope", "$http", function ($scope, $http) {
+    $scope.senhaValida = false;
+    $scope.data = {
+        novaSenha: '',
+        confSenha: ''
+    }
+
+    $scope.submit = function (form) {
+        if (typeof form == "undefined")
+            return;
+
+        console.log(form.$valid, $scope.data);
+
+        if (form.$valid && $scope.data.novaSenha == $scope.data.confSenha) {
             console.log("valido");
             $scope.$applyAsync();
         }

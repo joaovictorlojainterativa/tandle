@@ -222,7 +222,7 @@
                         </div>
                     </div>
                 </div>
-                <button ng-show="cursos.cr != ''" class="btn btn-primary pull-right" ng-click="exibirform = true"
+                <button ng-show="cursos.cr != ''" class="btn btn-primary pull-right scroll-top" ng-click="exibirform = true"
                         type="button">Seguir <span
                         class="fa fa-arrow-right"></span>
                 </button>
@@ -268,7 +268,7 @@
 
                                     <div class="col-sm-9">
                                         <input ng-model="data.cpf" type="text" name="cpf" required
-                                               cpf="data.cpf"
+                                               cpf
                                                class="form-control">
 
                                         <div ng-show="form.$submitted || form.cpf.$touched">
@@ -323,9 +323,8 @@
                                     Nascimento*:</label>
 
                                     <div class="col-sm-9">
-                                        <input ng-model="data.dataNasc" type="text" name="dataNasc"
+                                        <input ng-model="data.dataNasc" type="date" name="dataNasc"
                                                required
-                                               mask="99/99/9999"
                                                class="form-control">
 
                                         <div ng-show="form.$submitted || form.dataNasc.$touched">
@@ -501,9 +500,6 @@
                                             <span class="label label-danger"
                                                   ng-show="form.cep.$error.required"> <span
                                                     class="glyphicon glyphicon-warning-sign"></span> Preencha o CEP</span>
-                                            <span class="label label-danger"
-                                                  ng-show="!$scope.cepvalido"> <span
-                                                    class="glyphicon glyphicon-warning-sign"></span> CEP Inválido</span>
                                         </div>
                                     </div>
                                 </div>
@@ -688,7 +684,7 @@
                     </div>
                 </div>
                 <!-- Exemplo de box Simples End -->
-                <button class="btn btn-primary pull-left" ng-click="exibirform = false" type="button"><span
+                <button class="btn btn-primary pull-left scroll-top" ng-click="exibirform = false" type="button"><span
                         class="fa fa-arrow-left"></span>
                     Voltar
                 </button>
